@@ -36,7 +36,9 @@ new Vue({
                     completedAt: null
                 });
                 this.saveData();
-           
+            } else {
+                alert('Карточка должна содержать от 3 до 5 пунктов.');
+            }
         },
 
         updateProgress(card) {
