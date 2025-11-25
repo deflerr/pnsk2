@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Заметки</title>
+    <link rel="stylesheet" href="css/style.css"> 
+    <script defer src="js/vue.js"></script> 
+    <script defer src="js/main.js"></script>
+</head>
+<body>
+    <div id="app">
+            <div class="board">
+                <div class="column" :class="{ disabled: isColumnBlocked(1) }">
+                    <h2>Колонка 1</h2>
+                    <div v-for="card in columns[0]" :key="card.id" class="card">
+                        <h3>{{ card.title }}</h3>
+                        <ul>
+                            <li v-for="(item, index) in card.items" :key="index">
+                                <input type="checkbox" v-model="item.completed" @change="updateProgress(card)">
+                                <span :class="{ completed: item.completed }">{{ item.text }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="add-card" v-if="columns[0].length < 3">
+                        <button @click="addCard(1)">Добавить карточку</button>
+                    </div>
+                </div>
+        
+                <div class="column">
+                    <h2>Колонка 2</h2>
+                    <div v-for="card in columns[1]" :key="card.id" class="card">
+                        <h3>{{ card.title }}</h3>
+                        <ul>
+                            <li v-for="(item, index) in card.items" :key="index">
+                                <input type="checkbox" v-model="item.completed" @change="updateProgress(card)">
+                                <span :class="{ completed: item.completed }">{{ item.text }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+        
+                <div class="column">
+                    <h2>Колонка 3</h2>
+                    <div v-for="card in columns[2]" :key="card.id" class="card">
+                        <h3>{{ card.title }}</h3>
+                        <p><strong>Завершено:</strong> {{ card.completedAt }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>    
+</body>
+</html>
