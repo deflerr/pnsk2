@@ -10,7 +10,19 @@
     <script defer src="js/main.js"></script>
 </head>
 <body>
-
+    <div id="app">
+            <div class="board">
+                <div class="column" :class="{ disabled: isColumnBlocked(1) }">
+                    <h2>Колонка 1</h2>
+                    <div v-for="card in columns[0]" :key="card.id" class="card">
+                        <h3>{{ card.title }}</h3>
+                        <ul>
+                            <li v-for="(item, index) in card.items" :key="index">
+                                <input type="checkbox" v-model="item.completed" @change="updateProgress(card)">
+                                <span :class="{ completed: item.completed }">{{ item.text }}</span>
+                            </li>
+                        </ul>
+                    </div>
                     <div class="add-card" v-if="columns[0].length < 3">
                         <button @click="addCard(1)">Добавить карточку</button>
                     </div>
