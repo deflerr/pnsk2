@@ -41,7 +41,12 @@
                     </div>
                 </div>
         
-              
+                <div class="column">
+                    <h2>Колонка 3</h2>
+                    <div v-for="card in columns[2]" :key="card.id" class="card">
+                        <h3>{{ card.title }}</h3>
+                        <p><strong>Завершено:</strong> {{ card.completedAt }}</p>
+                    </div>
                 </div>
             </div>
         </div>    
